@@ -12,14 +12,14 @@ import Game.GameWrapper;
  * @author André Oliveira
  */
 public class System extends Card {
-    private String Nome;
+    private String name;
     private int Resist;
     private int Wealth;
     private int Metal;
     private int VictoryP;
     
     public System(String n, int w, int m, int r, int vp){
-        this.Nome = n;
+        this.name = n;
         this.Metal = m;
         this.Wealth = w;
         this.Resist = r;
@@ -27,8 +27,8 @@ public class System extends Card {
     }
 
     
-    public String getNome(){
-        return this.Nome;
+    public String getName(){
+        return this.name;
     }
     public int getWealth(){
         return this.Wealth;
@@ -48,8 +48,8 @@ public class System extends Card {
     
   
     @Override
-    public String EscreveCarta() {
-        String Description = "Planeta próximo "  + this.getNome() + " R:" + this.getResist() + "W:"+ this.getWealth() +" M:" + this.getMetal() + " VP:" + this.getVP();
+    public String WriteCard() {
+        String Description = "Close system "  + this.getName() + " R:" + this.getResist() + "W:"+ this.getWealth() +" M:" + this.getMetal() + " VP:" + this.getVP();
         
         return Description;
         

@@ -42,7 +42,7 @@ public class PlanetaryDefenses extends Technology{
     @Override
     public void doEffect(GameWrapper j) {
         if(this.getLearn()){
-            j.getPlayer().getConquistados().get(0).setResist(1);
+            j.getPlayer().getConqueredSystems().get(0).setResist(1);
         }
         else{
             this.setLearn(true);

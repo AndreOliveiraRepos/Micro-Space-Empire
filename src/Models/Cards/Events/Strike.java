@@ -20,7 +20,7 @@ public class Strike extends Card {
     private String year1;
     private String year2;
     public Strike(){
-        this.setNome("Strike");
+        this.setName("Strike");
         this.year1 = "No Resources next turn";
         this.year2 = "No Resources next turn";
     }
@@ -38,7 +38,7 @@ public class Strike extends Card {
 
 
     @Override
-    public String EscreveCarta() {
+    public String WriteCard() {
         String s;
         s = "Strike-> 1:" + this.getYear1() + " 2:" +this.getYear2();
         return s;

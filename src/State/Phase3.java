@@ -11,16 +11,16 @@ import Game.GameWrapper;
  *
  * @author André Oliveira
  */
-public class Fase3 extends StateAdapter {
+public class Phase3 extends StateAdapter {
 
-    public Fase3(GameWrapper j) {
+    public Phase3(GameWrapper j) {
         super (j);
     }
     
     /*Compra evento, Recruit e Tech*/
     
     @Override
-    public IEstado Research(int x, int y){ 
+    public IState Research(int x, int y){
         if (this.game.getTechs(x, y).getLearn()) {
             this.game.setSystemMessage("[SISTEMA] Já aprendeste esta tecnologia!");
             return this;
@@ -37,7 +37,7 @@ public class Fase3 extends StateAdapter {
     }
     
     @Override
-    public IEstado BuildRecruit(){ 
+    public IState BuildRecruit(){
         if(this.game.getPlayer().getTotMetal() == 0){
             this.game.setSystemMessage("[SISTEMA] Não possui metal que chegue!");
             return this;
@@ -70,10 +70,10 @@ public class Fase3 extends StateAdapter {
         }
     }
     @Override
-    public IEstado DrawEvent(){ 
-        if(this.game.getEventos().size()> 0){
-            this.game.getEventos().get(0).doEffect(this.game);
-            this.game.getEventos().remove(0);
+    public IState DrawEvent(){
+        if(this.game.getEvents().size()> 0){
+            this.game.getEvents().get(0).doEffect(this.game);
+            this.game.getEvents().remove(0);
             //condiçoes de victoria aqui
             if (this.game.CheckForEndGame()) {
                 game.setSystemMessage("Conseguiu " + game.CountPoints() + " Victory Points neste jogo!");
@@ -82,7 +82,7 @@ public class Fase3 extends StateAdapter {
             else{
 
                 this.game.EndTurn();
-                return new Fase1(this.game);
+                return new Phase1(this.game);
             }
             //return this;
         }

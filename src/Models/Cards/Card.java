@@ -16,16 +16,16 @@ import java.util.ArrayList;
  * @author André Oliveira
  */
 public abstract class Card implements Serializable {
-    private String nome;
+    private String name;
     public Card(){}
     
     public abstract void doEffect(GameWrapper j);
     
-    public abstract String EscreveCarta();
+    public abstract String WriteCard();
     
     //public abstract String toString();
     
-    public static ArrayList<System> Proximos(){
+    public static ArrayList<System> nearbySystems(){
      ArrayList p = new ArrayList();
      p.add(new System("Cygnus", 1 , 0, 5, 1));
      p.add(new System("Tau Ceti",0,0,4,1));
@@ -37,7 +37,7 @@ public abstract class Card implements Serializable {
      return p;
     }
     
-    public static ArrayList<System> Longinquos(){
+    public static ArrayList<System> distantSystems(){
      ArrayList l = new ArrayList();
      l.add(new System("Galaxy's Edge",0,0,10,3));
      l.add(new System("Polaris",0,1,9,2));
@@ -47,20 +47,20 @@ public abstract class Card implements Serializable {
     
     /* baralho de eventos */
     
-    public static ArrayList<Card> Eventos(){
-        ArrayList eventos = new ArrayList();
-        eventos.add(new Asteroid());
-        eventos.add(new DerelicShip());
-        eventos.add(new LInvasion());
-        eventos.add(new PaO());
-        eventos.add(new Revolt1());
-        eventos.add(new Revolt2());
-        eventos.add(new SInvasion());
-        eventos.add(new Strike());
-        return eventos;
+    public static ArrayList<Card> events(){
+        ArrayList events = new ArrayList();
+        events.add(new Asteroid());
+        events.add(new DerelicShip());
+        events.add(new LInvasion());
+        events.add(new PaO());
+        events.add(new Revolt1());
+        events.add(new Revolt2());
+        events.add(new SInvasion());
+        events.add(new Strike());
+        return events;
     }
     
-    public String getNome(){return this.nome;}
-    public void setNome(String s){this.nome = s;}
+    public String getName(){return this.name;}
+    public void setName(String s){this.name = s;}
 }
 

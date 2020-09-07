@@ -22,7 +22,7 @@ public class InterstellarDiplomacy extends Technology{
     }
     
     public void doEffect(System s, Player j){
-        j.AddSistema(s);
+        j.AddSystem(s);
     }
     
     public String getDescription(){return this.description;}

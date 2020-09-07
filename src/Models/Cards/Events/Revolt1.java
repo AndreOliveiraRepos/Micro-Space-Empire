@@ -22,7 +22,7 @@ public class Revolt1 extends Card {
     private String year1;
     private String year2;
     public Revolt1(){
-        this.setNome("Revolt 1");
+        this.setName("Revolt 1");
         this.year1 = "Force +1";
         this.year2 = "Force +3";
     }
@@ -33,22 +33,22 @@ public class Revolt1 extends Card {
         
         /*rola dado*/
         
-        if (j.getPlayer().getConquistados().size() == 1 && j.getAno() == 2) {
+        if (j.getPlayer().getConqueredSystems().size() == 1 && j.getYear() == 2) {
             
-           j.getPlayer().getConquistados().remove(0);
+           j.getPlayer().getConqueredSystems().remove(0);
            /*j.getEstado().End();
            return true;*/
            j.setSystemMessage("O HomeWorld revoltou-se e perdeu o jogo!\n");
         }
-        else if(j.getPlayer().getConquistados().size() > 1){
+        else if(j.getPlayer().getConqueredSystems().size() > 1){
             System s;
-            int i = 0,r = j.RolaDado(),p = 0;
-            s = j.getPlayer().getConquistados().get(1);
-            if(j.getPlayer().getConquistados().size() > 1){
-                for (i = 1; i < j.getPlayer().getConquistados().size(); i++) {
-                    if(s.getResist() >= j.getPlayer().getConquistados().get(i).getResist() )
+            int i = 0,r = j.RollDice(),p = 0;
+            s = j.getPlayer().getConqueredSystems().get(1);
+            if(j.getPlayer().getConqueredSystems().size() > 1){
+                for (i = 1; i < j.getPlayer().getConqueredSystems().size(); i++) {
+                    if(s.getResist() >= j.getPlayer().getConqueredSystems().get(i).getResist() )
                     {
-                        s = j.getPlayer().getConquistados().get(i);
+                        s = j.getPlayer().getConqueredSystems().get(i);
                         p = i;
                     }
 
@@ -59,32 +59,32 @@ public class Revolt1 extends Card {
             if(j.getTechs(2,0).getLearn())
                 s.setResist(1);
 
-            if (j.getAno()==1 && j.getPlayer().getConquistados().size() > 1) {
+            if (j.getYear()==1 && j.getPlayer().getConqueredSystems().size() > 1) {
                 if((r + 1)>= s.getResist())
                 {
-                    j.setRelatorioCombat(false, j.getPlayer().getConquistados().get(p), r);
-                    j.getDesalinhas().add(j.getPlayer().getConquistados().get(p));
-                    j.getPlayer().getConquistados().remove(p);
+                    j.setCombatReport(false, j.getPlayer().getConqueredSystems().get(p), r);
+                    j.getUnaligned().add(j.getPlayer().getConqueredSystems().get(p));
+                    j.getPlayer().getConqueredSystems().remove(p);
 
                 }
                 else
                 {  
-                    j.setRelatorioCombat(true, j.getPlayer().getConquistados().get(p), r);
+                    j.setCombatReport(true, j.getPlayer().getConqueredSystems().get(p), r);
 
 
                 }
             }
-            else if(j.getAno()==2){
+            else if(j.getYear()==2){
                 if((r + 3)>= s.getResist())
                 {
-                    j.setRelatorioCombat(false, j.getPlayer().getConquistados().get(p), r);
-                    j.getDesalinhas().add(j.getPlayer().getConquistados().get(p));
-                    j.getPlayer().getConquistados().remove(p);
+                    j.setCombatReport(false, j.getPlayer().getConqueredSystems().get(p), r);
+                    j.getUnaligned().add(j.getPlayer().getConqueredSystems().get(p));
+                    j.getPlayer().getConqueredSystems().remove(p);
 
                 }
                 else
                 {  
-                    j.setRelatorioCombat(true, j.getPlayer().getConquistados().get(p), r);
+                    j.setCombatReport(true, j.getPlayer().getConqueredSystems().get(p), r);
 
 
                 }
@@ -100,7 +100,7 @@ public class Revolt1 extends Card {
     
 
     @Override
-    public String EscreveCarta() {
+    public String WriteCard() {
         String s;
         s = "Revolt-> 1:" + this.getYear1() + " 2:" +this.getYear2();
         return s;

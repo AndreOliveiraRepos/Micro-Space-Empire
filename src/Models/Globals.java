@@ -10,7 +10,5 @@ package Models;
  * @author André Oliveira
  */
 public interface Globals {
-    int MAXSISTEMAS = 10;
-    int MAXSISTEMASDISTANTES = 3;
-    int MAXEVENTOS = 8;
+    int MAXSYSTEMS = 10;
 }

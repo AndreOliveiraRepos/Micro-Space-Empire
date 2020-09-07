@@ -17,7 +17,7 @@ public class DerelicShip extends Card {
     private String year1;
     private String year2;
     public DerelicShip(){
-        this.setNome("Derelic Ship");
+        this.setName("Derelic Ship");
         this.year1 = "Gain 1 Metal";
         this.year2 = "Gain 1 Metal";
     }
@@ -39,7 +39,7 @@ public class DerelicShip extends Card {
 
 
     @Override
-    public String EscreveCarta() {
+    public String WriteCard() {
         String s;
         s = "Derelic Ship-> 1:" + this.getYear1() + " 2:" +this.getYear2();
         return s;

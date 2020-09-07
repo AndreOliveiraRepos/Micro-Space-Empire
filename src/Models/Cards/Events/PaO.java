@@ -19,7 +19,7 @@ public class PaO extends Card {
     private String year1;
     private String year2;
     public PaO(){
-        this.setNome("Peace and Order");
+        this.setName("Peace and Order");
         this.year1 = "No Event";
         this.year2 = "No Event";
     }
@@ -36,7 +36,7 @@ public class PaO extends Card {
 
 
     @Override
-    public String EscreveCarta() {
+    public String WriteCard() {
         String s;
         s = "Peace & Order-> 1:" + this.getYear1() + " 2:" +this.getYear2();
         return s;

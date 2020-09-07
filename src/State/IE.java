@@ -18,7 +18,7 @@ public class IE extends StateAdapter {
     }
     
     @Override
-    public IEstado Commerce(int v){
+    public IState Commerce(int v){
         if (v == 1) {
             if (this.game.getPlayer().getTotMetal() >= 2 && this.game.getPlayer().getTotWealth() <= 4 ) {
                 this.game.getPlayer().setMetal(-2);
@@ -33,12 +33,12 @@ public class IE extends StateAdapter {
                 this.game.setSystemMessage("[Sistema] Trocou 2 de Wealth\npor 1 de Metal");
             }
         }
-        return new Fase3(this.game);
+        return new Phase3(this.game);
     }
     
     @Override
-    public IEstado Pass(){
+    public IState Pass(){
         this.game.setSystemMessage("[Sistema] Passou!");
-        return new Fase3(this.game);
+        return new Phase3(this.game);
     }
 }

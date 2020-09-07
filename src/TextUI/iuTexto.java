@@ -14,16 +14,16 @@ import java.util.Scanner;
  * @author André Oliveira
  */
 public class iuTexto {
-    private GameWrapper jogo;
+    private GameWrapper gameWrapper;
     private Scanner s;
     
     public iuTexto(GameWrapper game){
-        this.jogo = game;
+        this.gameWrapper = game;
         s=new Scanner(System.in);
     }
     
     public void Show(){
-        System.out.print(this.jogo.toString());
+        System.out.print(this.gameWrapper.toString());
     }
     
     
@@ -41,7 +41,7 @@ public class iuTexto {
         opcao=s.nextInt();
 
         if(opcao==1)
-            this.jogo.Iniciar();
+            this.gameWrapper.begin();
             //this.jogo.setEstado(new Fase1(this.jogo));
             /**/
         if (opcao == 2) {
@@ -73,35 +73,35 @@ public class iuTexto {
         opcao=s.nextInt();
 
         if(opcao==1){    
-            this.jogo.DrawClose();
-            System.out.println(this.jogo.getRelatorioCombate());
+            this.gameWrapper.DrawClose();
+            System.out.println(this.gameWrapper.getCombatReport());
             
             
         }   
         if (opcao == 2) {
             System.out.println("Não implementado!");
-            System.out.println(this.jogo.getRelatorioCombate());
+            System.out.println(this.gameWrapper.getCombatReport());
         }
         if (opcao == 3) {
             
-            if(this.jogo.getDesalinhas().isEmpty()){
+            if(this.gameWrapper.getUnaligned().isEmpty()){
                 System.out.println("Não existem Planetas desalinhados!");
             }
             else{
-                for (int i = 0; i < this.jogo.getDesalinhas().size(); i++) {
-                    System.out.println(i + " - " + this.jogo.getDesalinhas().get(i).EscreveCarta());
+                for (int i = 0; i < this.gameWrapper.getUnaligned().size(); i++) {
+                    System.out.println(i + " - " + this.gameWrapper.getUnaligned().get(i).WriteCard());
                 }
                 System.out.print("> ");
                 while(!s.hasNextInt()) s.next();
             
                 opcao=s.nextInt();
-                this.jogo.Conquer(opcao);
-                System.out.println(this.jogo.getRelatorioCombate());
+                this.gameWrapper.Conquer(opcao);
+                System.out.println(this.gameWrapper.getCombatReport());
             }
         }
         if(opcao==4){    
             System.out.println("Passou!");
-            this.jogo.Pass();
+            this.gameWrapper.Pass();
         }
         
     }
@@ -123,43 +123,43 @@ public class iuTexto {
 
         if(opcao==1){   
             System.out.println("[SISTEMA]A adicionar +1 a Força Militar");
-            this.jogo.BuildRecruit();
+            this.gameWrapper.BuildRecruit();
             
             
         }   
         if (opcao == 2) {
             
             System.out.println("Escolha uma das opções");
-            System.out.println(this.jogo.TechsPorAprender());
+            System.out.println(this.gameWrapper.LearnableTechnologies());
             System.out.print("> ");
             while(!s.hasNextInt()) s.next();
             opcao=s.nextInt();
             switch(opcao)
             {
                 case 1:
-                    this.jogo.Research(0, 0);
+                    this.gameWrapper.Research(0, 0);
                     break;
                 case 2:
-                    this.jogo.Research(1, 0);
+                    this.gameWrapper.Research(1, 0);
                     break;
                 case 3:
-                    this.jogo.Research(2, 0);
+                    this.gameWrapper.Research(2, 0);
                     break;
                 case 4:
-                    this.jogo.Research(3, 0);
+                    this.gameWrapper.Research(3, 0);
                     break;
                 case 5:
-                    this.jogo.Research(0, 1);
+                    this.gameWrapper.Research(0, 1);
                     
                     break;
                 case 6:
-                    this.jogo.Research(1, 1);
+                    this.gameWrapper.Research(1, 1);
                     break;
                 case 7:
-                    this.jogo.Research(2, 1);
+                    this.gameWrapper.Research(2, 1);
                     break;
                 case 8:
-                    this.jogo.Research(3, 1);
+                    this.gameWrapper.Research(3, 1);
                     
                     break;
                 default:
@@ -169,14 +169,14 @@ public class iuTexto {
         }
         if(opcao==3){   
             System.out.println("[SISTEMA]Comprou um evento");
-            System.out.println(this.jogo.getEventos().get(0).toString());
-            this.jogo.DrawEvent();
+            System.out.println(this.gameWrapper.getEvents().get(0).toString());
+            this.gameWrapper.DrawEvent();
             
             
         }   
         if(opcao==4){    
             System.out.println("Passou!");//fim de turno
-            this.jogo.EndTurn();
+            this.gameWrapper.EndTurn();
             //this.jogo.setEstado(new Fase1(this.jogo));
             
         }
@@ -186,19 +186,19 @@ public class iuTexto {
     public void run(){
         Begin();
         //while(true){
-        while(! (jogo.getEstado() instanceof End)){
+        while(! (gameWrapper.getState() instanceof End)){
 
-            if(jogo.getEstado() instanceof Fase1){
+            if(gameWrapper.getState() instanceof Phase1){
                 Fase1();
             }
                     
-            else if(jogo.getEstado() instanceof Fase3 )
+            else if(gameWrapper.getState() instanceof Phase3)
             {
                 Fase3();
             }
         }
-        System.out.println(this.jogo.getMensagemSistema());
-        System.out.println("Pontuação neste jogo: " + this.jogo.CountPoints());
+        System.out.println(this.gameWrapper.getSystemMessage());
+        System.out.println("Pontuação neste jogo: " + this.gameWrapper.CountPoints());
         /*System.out.println();*/
         System.out.println("************** Fim do jogo *****************");
         //mostraJogo();

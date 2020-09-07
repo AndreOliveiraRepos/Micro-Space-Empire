@@ -20,7 +20,7 @@ public class SInvasion extends Card {
     private String year1;
     private String year2;
     public SInvasion(){
-        this.setNome("Small Invasion");
+        this.setName("Small Invasion");
         this.year1 = "Force +1";
         this.year2 = "Force +2";
     }
@@ -31,44 +31,44 @@ public class SInvasion extends Card {
     public void doEffect(GameWrapper j){
         /*rola dado*/
        
-        if (j.getPlayer().getConquistados().size() == 1 && j.getAno() == 2) {
+        if (j.getPlayer().getConqueredSystems().size() == 1 && j.getYear() == 2) {
             
-           j.getPlayer().getConquistados().remove(0);
+           j.getPlayer().getConqueredSystems().remove(0);
            /*j.getEstado().End();
             return true;*/
            j.setSystemMessage("O HomeWorld foi invadido e perdeu o jogo!\n");
         }
-        int r = j.RolaDado();
+        int r = j.RollDice();
         /*Planetary Defenses*/
         if(j.getTechs(1,1).getLearn())
             j.getTechs(1,1).doEffect(j);
         /*condiçoes de combate*/
-        if (j.getAno()==1 && j.getPlayer().getConquistados().size() > 1) {
-            if((r + 1)> j.getPlayer().getConquistados().get(j.getPlayer().getConquistados().size()-1).getResist())
+        if (j.getYear()==1 && j.getPlayer().getConqueredSystems().size() > 1) {
+            if((r + 1)> j.getPlayer().getConqueredSystems().get(j.getPlayer().getConqueredSystems().size()-1).getResist())
             {
-                j.setRelatorioCombat(false, j.getPlayer().getConquistados().get(j.getPlayer().getConquistados().size()-1), r);
-                j.getDesalinhas().add(j.getPlayer().getConquistados().get(j.getPlayer().getConquistados().size()-1));
-                j.getPlayer().getConquistados().remove(j.getPlayer().getConquistados().size()-1);
+                j.setCombatReport(false, j.getPlayer().getConqueredSystems().get(j.getPlayer().getConqueredSystems().size()-1), r);
+                j.getUnaligned().add(j.getPlayer().getConqueredSystems().get(j.getPlayer().getConqueredSystems().size()-1));
+                j.getPlayer().getConqueredSystems().remove(j.getPlayer().getConqueredSystems().size()-1);
                
             }
             else
             {  
-                j.setRelatorioCombat(true, j.getPlayer().getConquistados().get(j.getPlayer().getConquistados().size()-1), r);
+                j.setCombatReport(true, j.getPlayer().getConqueredSystems().get(j.getPlayer().getConqueredSystems().size()-1), r);
                 
             
             }
         }
-        else if(j.getAno()==2 && j.getPlayer().getConquistados().size()>1){
-            if((r + 2)> j.getPlayer().getConquistados().get(j.getPlayer().getConquistados().size()-1).getResist())
+        else if(j.getYear()==2 && j.getPlayer().getConqueredSystems().size()>1){
+            if((r + 2)> j.getPlayer().getConqueredSystems().get(j.getPlayer().getConqueredSystems().size()-1).getResist())
             {
-                j.setRelatorioCombat(false, j.getPlayer().getConquistados().get(j.getPlayer().getConquistados().size()-1), r);
-                j.getDesalinhas().add(j.getPlayer().getConquistados().get(j.getPlayer().getConquistados().size()-1));
-                j.getPlayer().getConquistados().remove(j.getPlayer().getConquistados().size()-1);
+                j.setCombatReport(false, j.getPlayer().getConqueredSystems().get(j.getPlayer().getConqueredSystems().size()-1), r);
+                j.getUnaligned().add(j.getPlayer().getConqueredSystems().get(j.getPlayer().getConqueredSystems().size()-1));
+                j.getPlayer().getConqueredSystems().remove(j.getPlayer().getConqueredSystems().size()-1);
                 
             }
             else
             {
-                j.setRelatorioCombat(true, j.getPlayer().getConquistados().get(j.getPlayer().getConquistados().size()-1), r);
+                j.setCombatReport(true, j.getPlayer().getConqueredSystems().get(j.getPlayer().getConqueredSystems().size()-1), r);
                 
             }
                 
@@ -84,7 +84,7 @@ public class SInvasion extends Card {
 
 
     @Override
-    public String EscreveCarta() {
+    public String WriteCard() {
         String s;
         s = "Small Invasion-> 1:" + this.getYear1() + " 2:" +this.getYear2();
         return s;

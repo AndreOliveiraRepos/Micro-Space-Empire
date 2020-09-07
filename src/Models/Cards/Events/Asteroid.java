@@ -19,7 +19,7 @@ public class Asteroid extends Card {
     public Asteroid(){
         this.year1 = "Gain 1 Wealth";
         this.year2 = "Gain 1 Wealth";
-        this.setNome("Asteroid");
+        this.setName("Asteroid");
     }
 
     
@@ -39,7 +39,7 @@ public class Asteroid extends Card {
   
 
     @Override
-    public String EscreveCarta() {
+    public String WriteCard() {
         String s;
         s = "Asteroid-> 1:" + this.getYear1() + " 2:" +this.getYear2();
         return s;

@@ -48,10 +48,10 @@ public class HyperTelevision extends Technology{
     public void doEffect(GameWrapper j) {
         if(this.getLearn()){
             System s;
-            s   =  j.getPlayer().getConquistados().get(0);
-            for (int i = 0; i < j.getPlayer().getConquistados().size(); i++) {
-                if (j.getPlayer().getConquistados().get(i).getResist() >= s.getResist()) {
-                    s = j.getPlayer().getConquistados().get(i);
+            s   =  j.getPlayer().getConqueredSystems().get(0);
+            for (int i = 0; i < j.getPlayer().getConqueredSystems().size(); i++) {
+                if (j.getPlayer().getConqueredSystems().get(i).getResist() >= s.getResist()) {
+                    s = j.getPlayer().getConqueredSystems().get(i);
                 }
             }
             s.setResist(1);

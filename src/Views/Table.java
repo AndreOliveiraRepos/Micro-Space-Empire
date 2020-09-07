@@ -6,10 +6,10 @@
 package Views;
 
 import State.End;
-import State.Fase1;
-import State.Fase3;
+import State.Phase1;
+import State.Phase3;
 import State.IE;
-import static Models.Globals.MAXSISTEMAS;
+import static Models.Globals.MAXSYSTEMS;
 import Models.Game;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -68,7 +68,7 @@ public class Table extends JFrame implements Observer{
         criarObjGraf();
         disporVista();
         registarListeners();
-        this.modelo.Iniciar();
+        this.modelo.initialize();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         validate();
     }
@@ -334,13 +334,13 @@ public class Table extends JFrame implements Observer{
                     repaint();
                 }*/
                 cartaDestaque.setVisible(false);
-                if(modelo.getEstado() instanceof Fase3){
+                if(modelo.getState() instanceof Phase3){
                     GrelhaListas.setVisible(true);
                     preencheListas();
                     Lista1.setVisible(true);
                     Lista2.setVisible(true);
                 }
-                else if(modelo.getEstado() instanceof IE)
+                else if(modelo.getState() instanceof IE)
                 {
                     
                     Commerce.setVisible(true);
@@ -363,29 +363,29 @@ public class Table extends JFrame implements Observer{
             @Override
             public void mouseClicked(MouseEvent e){
                 //modelo.setCartaDestacada();
-                    if(modelo.getEstado() instanceof Fase3 && !cartaDestaque.isVisible() && !Commerce.isVisible()){
+                    if(modelo.getState() instanceof Phase3 && !cartaDestaque.isVisible() && !Commerce.isVisible()){
                         GrelhaListas.setVisible(false);
                     
-                        modelo.CompraEvento();
-                        cartaDestaque.setImage(modelo.getCartaDestacada());
+                        modelo.drawEvent();
+                        cartaDestaque.setImage(modelo.getHighlightedCard());
 
                         cartaDestaque.setVisible(true);
 
-                        MensagemSistema.setText(modelo.getRelatorioCombate() );
-                        Descarte.setImage(modelo.getCartaDestacada());
-                        if (modelo.getEventos().size()== 0){
+                        MensagemSistema.setText(modelo.getCombatReport() );
+                        Descarte.setImage(modelo.getHighlightedCard());
+                        if (modelo.getEvents().size()== 0){
                             CartaEventos.setVisible(false);
                         }
                         
                     }
                     else if(cartaDestaque.isVisible()){
-                        modelo.setMensagemSistema("[SISTEMA]Clique na carta\nem destaque!");
+                        modelo.setSystemMessage("[SISTEMA]Clique na carta\nem destaque!");
                     }
                     else if(Commerce.isVisible()){
-                        modelo.setMensagemSistema("[SISTEMA]Escolha uma operação ou passe!");
+                        modelo.setSystemMessage("[SISTEMA]Escolha uma operação ou passe!");
                     }
                     else{
-                        modelo.setMensagemSistema("[SISTEMA ]Só pode comprar um\nEvento na sua devida fase!");
+                        modelo.setSystemMessage("[SISTEMA ]Só pode comprar um\nEvento na sua devida fase!");
                     }
                     repaint();
                  
@@ -397,30 +397,30 @@ public class Table extends JFrame implements Observer{
                
                 //System.out.print
                 
-                if(modelo.getEstado() instanceof Fase1 && !cartaDestaque.isVisible() && !Commerce.isVisible() )
+                if(modelo.getState() instanceof Phase1 && !cartaDestaque.isVisible() && !Commerce.isVisible() )
                 {
                     GrelhaListas.setVisible(false);
                     cartaDestaque.setVisible(true);
-                    modelo.CompraProximo();
-                    cartaDestaque.setImage(modelo.getCartaDestacada());
+                    modelo.drawNearSystem();
+                    cartaDestaque.setImage(modelo.getHighlightedCard());
 
                     
                     
-                    MensagemSistema.setText(modelo.getRelatorioCombate() );
-                    if (modelo.getTamanhoProximos()== 0){
+                    MensagemSistema.setText(modelo.getCombatReport() );
+                    if (modelo.getNearSystemsSize()== 0){
                         CartaSistemasProximos.setVisible(false);
                     }
                     
                    
                 }
                 else if(cartaDestaque.isVisible()){
-                    modelo.setMensagemSistema("[SISTEMA]Clique na carta\nem destaque!");
+                    modelo.setSystemMessage("[SISTEMA]Clique na carta\nem destaque!");
                 }
                 else if(Commerce.isVisible()){
-                    modelo.setMensagemSistema("[SISTEMA]Escolha uma operação ou passe!");
+                    modelo.setSystemMessage("[SISTEMA]Escolha uma operação ou passe!");
                 }
                 else{
-                        modelo.setMensagemSistema("[SISTEMA]Só pode comprar um\nSistema Proximo na sua devida fase!");
+                        modelo.setSystemMessage("[SISTEMA]Só pode comprar um\nSistema Proximo na sua devida fase!");
                 }
                 
                 
@@ -435,43 +435,43 @@ public class Table extends JFrame implements Observer{
                
                 //modelo.setCartaDestacada();
                 
-                if(modelo.getEstado() instanceof Fase1 && !cartaDestaque.isVisible() && !Commerce.isVisible() && modelo.getTechs(0, 1).getLearn() )
+                if(modelo.getState() instanceof Phase1 && !cartaDestaque.isVisible() && !Commerce.isVisible() && modelo.getTechs(0, 1).getLearn() )
                 {
                     
                     GrelhaListas.setVisible(false);
                     
-                    modelo.CompraDistante();
+                    modelo.drawDistantSystem();
                     
-                    if(modelo.getCartaDestacada() != null)
+                    if(modelo.getHighlightedCard() != null)
                     {   
                         
-                        cartaDestaque.setImage(modelo.getCartaDestacada());
+                        cartaDestaque.setImage(modelo.getHighlightedCard());
                         cartaDestaque.setVisible(true);
                        
-                        MensagemSistema.setText(modelo.getRelatorioCombate() );
+                        MensagemSistema.setText(modelo.getCombatReport() );
                     
                     }
                     //System.out.println("Tamanho proximo:"+modelo.getTamanhoDistantes());
-                    if (modelo.getTamanhoDistantes()== 0){
+                    if (modelo.getDistantSystemsSize()== 0){
                         CartaSistemasDistantes.setVisible(false);
                     }
                     
                     
                     
                 }
-                else if(!(modelo.getEstado() instanceof Fase1)){
-                    modelo.setMensagemSistema("[Sistema]Só pode comprar um\nSistema Proximo na sua devida fase!");
+                else if(!(modelo.getState() instanceof Phase1)){
+                    modelo.setSystemMessage("[Sistema]Só pode comprar um\nSistema Proximo na sua devida fase!");
                        
                 }
                 else if(!modelo.getTechs(0, 1).getLearn())
                 {
-                    modelo.setMensagemSistema("[Sistema]Não tem Forward Bases!");
+                    modelo.setSystemMessage("[Sistema]Não tem Forward Bases!");
                 }
                 else if(Commerce.isVisible()){
-                        modelo.setMensagemSistema("[SISTEMA]Escolha uma operação ou passe!");
+                        modelo.setSystemMessage("[SISTEMA]Escolha uma operação ou passe!");
                      }
                 else if(cartaDestaque.isVisible()){
-                    modelo.setMensagemSistema("[SISTEMA]Clique na carta\nem destaque!");
+                    modelo.setSystemMessage("[SISTEMA]Clique na carta\nem destaque!");
                 }
                 
                 repaint();
@@ -486,26 +486,26 @@ public class Table extends JFrame implements Observer{
         Lista1.removeAll();
         Lista2.removeAll();
         //final int i;
-        for (int i = 0; i < MAXSISTEMAS; i++) {
-            if(i >= modelo.getTamanhoDesalinhados() || modelo.getTamanhoDesalinhados() == 0){
+        for (int i = 0; i < MAXSYSTEMS; i++) {
+            if(i >= modelo.getUnalignedSize() || modelo.getUnalignedSize() == 0){
                 
                 Lista1.add(new Card(new BorderLayout(),false,0,0,modelo));
             }
             else{
-                Card c = new Card(new BorderLayout(),true,100,100,modelo,modelo.getImagem(modelo.getDesalinhados().get(i).getNome()));
+                Card c = new Card(new BorderLayout(),true,100,100,modelo,modelo.getImage(modelo.getUnaligned().get(i).getName()));
                 final int x = i;
                 c.addMouseListener(new MouseAdapter() {
                     
                     @Override
                     public void mouseClicked(MouseEvent e){
                             //System.out.println("click");
-                            if (modelo.getEstado() instanceof Fase1) {
+                            if (modelo.getState() instanceof Phase1) {
                                 modelo.Conquer(x);
-                                modelo.setMensagemSistema(modelo.getRelatorioCombate());
+                                modelo.setSystemMessage(modelo.getCombatReport());
                             
                             }
                             else{
-                                modelo.setMensagemSistema("[Sistema] Só pode conquistar\nno fase devida!");
+                                modelo.setSystemMessage("[Sistema] Só pode conquistar\nno fase devida!");
                             }
                     }
                 });
@@ -515,13 +515,13 @@ public class Table extends JFrame implements Observer{
             }
         }
         
-        for (int i = 0; i < MAXSISTEMAS; i++) {
-            if(i >= modelo.getTamanhoConquistados() || modelo.getTamanhoConquistados() == 0){
+        for (int i = 0; i < MAXSYSTEMS; i++) {
+            if(i >= modelo.getConqueredSize() || modelo.getConqueredSize() == 0){
                 Lista2.add(new Card(new BorderLayout(),false,0,0,modelo));
             }
             else{
                 
-                    Lista2.add(new Card(new BorderLayout(),true,100,100,modelo,modelo.getImagem(modelo.getConquistados().get(i).getNome())));
+                    Lista2.add(new Card(new BorderLayout(),true,100,100,modelo,modelo.getImage(modelo.getConqueredSystems().get(i).getName())));
                 
                 
             }
@@ -532,8 +532,8 @@ public class Table extends JFrame implements Observer{
     
     public void update(Observable t, Object o) {
         
-        if (modelo.getEstado() instanceof End) {
-            Fim.setText(modelo.getMensagemSistema());
+        if (modelo.getState() instanceof End) {
+            Fim.setText(modelo.getSystemMessage());
             
             FimJogo.add(Fim,BorderLayout.CENTER);
             tabuleiro.removeAll();
@@ -546,9 +546,9 @@ public class Table extends JFrame implements Observer{
             
             
         }
-        else if(modelo.getEstado() instanceof IE )
+        else if(modelo.getState() instanceof IE )
         {
-            MensagemSistema.setText(modelo.getMensagemSistema());
+            MensagemSistema.setText(modelo.getSystemMessage());
             if (modelo.getTotMetal() < 2 ) {
                MetalForWealth.setVisible(false);
             }
@@ -562,12 +562,12 @@ public class Table extends JFrame implements Observer{
                 Commerce.setVisible(true);
                 ContainerListas.add(Commerce,BorderLayout.WEST);
             }
-            MensagemSistema.setText(modelo.getMensagemSistema());
+            MensagemSistema.setText(modelo.getSystemMessage());
             Lista1.setVisible(false);
             Lista2.setVisible(false);
         }
-        else if(modelo.getEstado() instanceof Fase1){
-            MensagemSistema.setText(modelo.getMensagemSistema());
+        else if(modelo.getState() instanceof Phase1){
+            MensagemSistema.setText(modelo.getSystemMessage());
             preencheListas();
             
             Lista1.setVisible(true);
@@ -579,7 +579,7 @@ public class Table extends JFrame implements Observer{
             
             
         }
-        else if(modelo.getEstado() instanceof Fase3){
+        else if(modelo.getState() instanceof Phase3){
             //preencheListas();
            //MensagemSistema.setText(modelo.getMensagemSistema());
             //MensagemSistema.setText(modelo.getMensagemSistema());
@@ -587,7 +587,7 @@ public class Table extends JFrame implements Observer{
             //Commerce.setVisible(false);
             //cartaDestaque.setVisible(false);
             ContainerListas.remove(Commerce);
-            MensagemSistema.setText(modelo.getMensagemSistema());
+            MensagemSistema.setText(modelo.getSystemMessage());
             /*ContainerListas.add(cartaDestaque,BorderLayout.WEST);*/
             //GrelhaListas.setVisible(true);
             
@@ -608,13 +608,13 @@ public class Table extends JFrame implements Observer{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (modelo.getEstado() instanceof Fase3) {
-                modelo.setMensagemSistema("[SISTEMA] Compre um evento\npara passar de turno");
+            if (modelo.getState() instanceof Phase3) {
+                modelo.setSystemMessage("[SISTEMA] Compre um evento\npara passar de turno");
                 repaint();
                 revalidate();
             }
             else{
-                modelo.PassarFase();
+                modelo.nextPhase();
                 repaint();
                 revalidate();
             }

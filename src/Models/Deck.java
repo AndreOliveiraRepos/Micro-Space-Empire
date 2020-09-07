@@ -15,59 +15,59 @@ import java.util.ArrayList;
  * @author André Oliveira
  */
 public class Deck {
-    private ArrayList<System> longinquos;
-    private ArrayList<System> proximos;
-    private ArrayList<Card> eventos;
-    private ArrayList<Card> descarte;
-    private ArrayList<System> conquistados;
+    private ArrayList<System> distantSystems;
+    private ArrayList<System> nearSystems;
+    private ArrayList<Card> events;
+    private ArrayList<Card> discard;
+    private ArrayList<System> conquered;
     
     public Deck(){
-        inicializar();
+        inicialize();
     }
     
-    public void inicializar(){
-        this.longinquos = Card.Longinquos();
-        this.proximos = Card.Proximos();
-        this.eventos = Card.Eventos();
-        this.conquistados = new ArrayList();
-        this.conquistados.add(new System("Homeworld",1,1,0,0));
+    public void inicialize(){
+        this.distantSystems = Card.distantSystems();
+        this.nearSystems = Card.nearbySystems();
+        this.events = Card.events();
+        this.conquered = new ArrayList();
+        this.conquered.add(new System("Homeworld",1,1,0,0));
     }
     
     
-    public ArrayList<System> getProximos(){return this.proximos;}
-    public ArrayList<System> getLonginquos(){return this.longinquos;}
-    public ArrayList<Card> getEventos(){return this.eventos;}
-    public ArrayList<System> getConquistados(){return this.conquistados;}
+    public ArrayList<System> getNearSystems(){return this.nearSystems;}
+    public ArrayList<System> getDistantSystems(){return this.distantSystems;}
+    public ArrayList<Card> getEvents(){return this.events;}
+    public ArrayList<System> getConquered(){return this.conquered;}
     
-    public void setProximos(ArrayList<System> l){ this.proximos = l;}
-    public void setLonginquos(ArrayList<System> l){ this.longinquos = l;}
-    public void setConquistados(ArrayList<System> l){ this.conquistados = l;}
-    public void setEventos(ArrayList<Card> l){ this.eventos = l;}
+    public void setNearSystems(ArrayList<System> l){ this.nearSystems = l;}
+    public void setDistantSystems(ArrayList<System> l){ this.distantSystems = l;}
+    public void setConquered(ArrayList<System> l){ this.conquered = l;}
+    public void setEvents(ArrayList<Card> l){ this.events = l;}
     //place listeners
-    public void setConquistado(System s){
-        this.conquistados.add(s);
+    public void setConquered(System s){
+        this.conquered.add(s);
     }
-    public void setDescarte(Card c){
-        this.descarte.add(c);
+    public void setDiscard(Card c){
+        this.discard.add(c);
     }
     
     
     //getProximo, getLong, getEvent
-    public System getProximo(){
+    public System getNearbySystem(){
     System s;
-    s = this.proximos.get(0);
+    s = this.nearSystems.get(0);
     return s;
     }
     
-    public System getLonginquo(){
+    public System getDistantSystem(){
     System s;
-    s = this.longinquos.get(0);
+    s = this.distantSystems.get(0);
     return s;
     }
     
-    public System getUltimoConquistado(){
+    public System getLastConqueredSystem(){
         System s;
-        s = this.conquistados.get(this.conquistados.size());
+        s = this.conquered.get(this.conquered.size());
         return s;
     }
     

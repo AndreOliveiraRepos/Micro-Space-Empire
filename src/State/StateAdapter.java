@@ -14,7 +14,7 @@ import java.io.Serializable;
  *
  * @author André Oliveira
  */
-public abstract class StateAdapter implements IEstado, Serializable {
+public abstract class StateAdapter implements IState, Serializable {
     public GameWrapper game;
     
     public StateAdapter(GameWrapper j){
@@ -32,31 +32,31 @@ public abstract class StateAdapter implements IEstado, Serializable {
     }
     
     @Override
-    public IEstado DrawClose(){ return this;}
+    public IState DrawClose(){ return this;}
     @Override
-    public IEstado DrawDistant(){ return this;}
+    public IState DrawDistant(){ return this;}
     
     @Override
-    public IEstado Conquer(int v){ return this;}
+    public IState Conquer(int v){ return this;}
     
     @Override
-    public IEstado Pass() {
+    public IState Pass() {
         return this;
     }
     
     @Override
-    public IEstado Research(int x, int y){ return this;}
+    public IState Research(int x, int y){ return this;}
     
     @Override
-    public IEstado BuildRecruit(){ return this;}
+    public IState BuildRecruit(){ return this;}
     @Override
-    public IEstado DrawEvent(){ return this;} 
+    public IState DrawEvent(){ return this;}
     @Override
-    public IEstado Commerce(int v){ return this;}
+    public IState Commerce(int v){ return this;}
     
     @Override
-    public IEstado Begin(){ return this;}
+    public IState Begin(){ return this;}
     @Override
-    public IEstado End(){ return this;}
+    public IState End(){ return this;}
     
 }

@@ -5,8 +5,8 @@
  */
 package Views;
 
-import State.Fase1;
-import State.Fase3;
+import State.Phase1;
+import State.Phase3;
 import State.IE;
 import Models.Game;
 import java.awt.BorderLayout;
@@ -240,9 +240,9 @@ public class GameInformation extends JPanel implements Observer {
 
         }
         
-        ano.setText("ANO:" + String.valueOf(this.modelo.getAno()));
-        turno.setText("Turno:" + String.valueOf(this.modelo.getTurno()));
-        estado.setText("State " + this.modelo.getNomeEstado());
+        ano.setText("ANO:" + String.valueOf(this.modelo.getYear()));
+        turno.setText("Turno:" + String.valueOf(this.modelo.getTurn()));
+        estado.setText("State " + this.modelo.getStateName());
         /*System.out.println("metal "+ modelo.getTotMetal());
         System.out.println("wealth "+ modelo.getTotWealth());
         System.out.println("Militar "+ modelo.getTotMilitar());*/
@@ -273,7 +273,7 @@ public class GameInformation extends JPanel implements Observer {
 
             }
         }
-        if (modelo.getEstado() instanceof Fase1 || modelo.getEstado() instanceof IE ) {
+        if (modelo.getState() instanceof Phase1 || modelo.getState() instanceof IE ) {
             ResearchButton.setVisible(false);
         }
         else{
@@ -359,11 +359,11 @@ public class GameInformation extends JPanel implements Observer {
         gridMilitar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e){
-                if (modelo.getEstado() instanceof Fase3) {
-                    modelo.Recruta();
+                if (modelo.getState() instanceof Phase3) {
+                    modelo.buildRecruit();
                 }
                 else
-                    modelo.setMensagemSistema("[SISTEMA]Só pode recrutar\nno fase correcta");
+                    modelo.setSystemMessage("[SISTEMA]Só pode recrutar\nno fase correcta");
                 /*repaint();
                 revalidate();*/
             }
