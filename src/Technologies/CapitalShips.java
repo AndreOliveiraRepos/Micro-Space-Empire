@@ -5,11 +5,11 @@
  */
 package Technologies;
 
-import Jogo.Jogo;
+import Game.GameWrapper;
 
 /**
  *
- * @author red_f
+ * @author André Oliveira
  */
 public class CapitalShips extends Technology{
     private String description;
@@ -33,7 +33,7 @@ public class CapitalShips extends Technology{
     }
 
     @Override
-    public void doEffect(Jogo j) {
+    public void doEffect(GameWrapper j) {
         this.setLearn(true);
         
     }

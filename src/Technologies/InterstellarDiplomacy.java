@@ -5,13 +5,13 @@
  */
 package Technologies;
 
-import Cartas.Sistema;
-import Jogo.Jogador;
-import Jogo.Jogo;
+import Models.Cards.System;
+import Models.Player;
+import Game.GameWrapper;
 
 /**
  *
- * @author red_f
+ * @author André Oliveira
  */
 public class InterstellarDiplomacy extends Technology{
     private String description;
@@ -21,7 +21,7 @@ public class InterstellarDiplomacy extends Technology{
         this.setNome("Interstellar Diplomacy");
     }
     
-    public void doEffect(Sistema s, Jogador j){
+    public void doEffect(System s, Player j){
         j.AddSistema(s);
     }
     
@@ -40,7 +40,7 @@ public class InterstellarDiplomacy extends Technology{
         return true;
     }*/
     @Override
-    public void doEffect(Jogo j) {
+    public void doEffect(GameWrapper j) {
         j.setDiplomacy(true); 
         this.setLearn(true);
         

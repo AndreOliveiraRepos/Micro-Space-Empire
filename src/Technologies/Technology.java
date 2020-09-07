@@ -5,15 +5,12 @@
  */
 package Technologies;
 
-import Cartas.Sistema;
-import Jogo.Jogador;
-import Jogo.Jogo;
+import Game.GameWrapper;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  *
- * @author red_f
+ * @author André Oliveira
  */
 public abstract class Technology implements Serializable{
     
@@ -38,7 +35,7 @@ public abstract class Technology implements Serializable{
     /*sets*/
     public void setLearn(boolean v){ this.learn = v;}
     public void setNome(String s){this.nome = s;};
-    public abstract void doEffect(Jogo j);
+    public abstract void doEffect(GameWrapper j);
     
     @Override
     public abstract String toString();

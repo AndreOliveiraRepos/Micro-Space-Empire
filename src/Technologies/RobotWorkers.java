@@ -5,12 +5,11 @@
  */
 package Technologies;
 
-import Jogo.Jogador;
-import Jogo.Jogo;
+import Game.GameWrapper;
 
 /**
  *
- * @author red_f
+ * @author André Oliveira
  */
 public class RobotWorkers extends Technology{
     private String description;
@@ -38,7 +37,7 @@ public class RobotWorkers extends Technology{
         return true;
     }*/
     @Override
-    public void doEffect(Jogo j) {
+    public void doEffect(GameWrapper j) {
         if(this.getLearn()){
             j.getPlayer().setMetal(j.getPlayer().getProdMetal()/2);
             j.getPlayer().setWealth(j.getPlayer().getProdWealth()/2);

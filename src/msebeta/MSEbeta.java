@@ -5,17 +5,12 @@
  */
 package msebeta;
 
-import Jogo.Jogo;
-import Modelo.Baralhos;
-import Modelo.ModeloCartas;
-import Modelo.ModeloJogo;
-import Vista.VistaMesa;
-import iuTexto.*;
-import javax.swing.SwingUtilities;
+import Models.Game;
+import Views.Table;
 
 /**
  *
- * @author red_f
+ * @author André Oliveira
  */
 public class MSEbeta {
 
@@ -33,7 +28,7 @@ public class MSEbeta {
             ModeloCartas m = new ModeloCartas(b);
             VistaJogo v = new VistaJogo(m);*/
             //ModeloJogo m;
-            new VistaMesa(new ModeloJogo());
+            new Table(new Game());
         
        
     }

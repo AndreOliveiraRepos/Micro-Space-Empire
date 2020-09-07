@@ -5,13 +5,12 @@
  */
 package Technologies;
 
-import Cartas.Sistema;
-import Jogo.Jogador;
-import Jogo.Jogo;
+import Models.Cards.System;
+import Game.GameWrapper;
 
 /**
  *
- * @author red_f
+ * @author André Oliveira
  */
 public class PlanetaryDefenses extends Technology{
     private String description;
@@ -20,7 +19,7 @@ public class PlanetaryDefenses extends Technology{
         this.description ="+1 to resistance during invasion";
         this.setNome("Planetary Defenses");
     }
-    public int doEffect(Sistema s) {
+    public int doEffect(System s) {
         int n;
         n = s.getResist()+1;
         return n;
@@ -41,7 +40,7 @@ public class PlanetaryDefenses extends Technology{
     }*/
     
     @Override
-    public void doEffect(Jogo j) {
+    public void doEffect(GameWrapper j) {
         if(this.getLearn()){
             j.getPlayer().getConquistados().get(0).setResist(1);
         }

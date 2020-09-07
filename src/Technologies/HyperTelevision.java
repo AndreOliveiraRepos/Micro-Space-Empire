@@ -5,13 +5,12 @@
  */
 package Technologies;
 
-import Cartas.Sistema;
-import Jogo.Jogador;
-import Jogo.Jogo;
+import Models.Cards.System;
+import Game.GameWrapper;
 
 /**
  *
- * @author red_f
+ * @author André Oliveira
  */
 public class HyperTelevision extends Technology{
     private String description;
@@ -46,9 +45,9 @@ public class HyperTelevision extends Technology{
     }*/
     
     @Override
-    public void doEffect(Jogo j) {
+    public void doEffect(GameWrapper j) {
         if(this.getLearn()){
-            Sistema s;
+            System s;
             s   =  j.getPlayer().getConquistados().get(0);
             for (int i = 0; i < j.getPlayer().getConquistados().size(); i++) {
                 if (j.getPlayer().getConquistados().get(i).getResist() >= s.getResist()) {
