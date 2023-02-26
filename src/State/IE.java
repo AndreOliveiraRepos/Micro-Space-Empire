@@ -15,6 +15,7 @@ public class IE extends StateAdapter {
     
     public IE(GameWrapper j) {
         super(j);
+        this.game.setSystemMessage("[SISTEMA] Interplanetary E");
     }
     
     @Override

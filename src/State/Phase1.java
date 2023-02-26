@@ -13,6 +13,12 @@ public class Phase1 extends StateAdapter {
     public Phase1(GameWrapper j)
     {
         super(j);
+        this.game.setSystemMessage("[SISTEMA] Phase 1");
+    }
+    @Override
+    public IState Begin(){ 
+        return this;
+    
     }
     
     @Override

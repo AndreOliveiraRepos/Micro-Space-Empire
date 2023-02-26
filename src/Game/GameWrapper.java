@@ -104,6 +104,8 @@ public class GameWrapper {
     
     public void begin(){
         int r;
+        this.setSystemMessage("[System] Starting a new game");
+        this.setSystemMessage("[System] Shuffling");
         Collections.shuffle(this.distantSystems);
         Collections.shuffle(this.nearSystems);
         /*create event deck*/
@@ -119,7 +121,7 @@ public class GameWrapper {
         r = ThreadLocalRandom.current().nextInt(0, this.events.size());
         this.events.remove(r);
         Collections.shuffle(this.events);
-        
+        this.setSystemMessage("[System] Starting");
         this.turn = 1;
         this.setState(new Phase1(this));
     }
@@ -236,7 +238,7 @@ public class GameWrapper {
     }
     
     public void EndTurn(){
-                
+        this.setSystemMessage("[System] Ended your turn");
         this.setState(this.getState().Pass());
     }
     

@@ -15,6 +15,7 @@ public class Phase3 extends StateAdapter {
 
     public Phase3(GameWrapper j) {
         super (j);
+        this.game.setSystemMessage("[SISTEMA] Phase 3");
     }
     
     /*Compra evento, Recruit e Tech*/
